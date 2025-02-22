@@ -18,7 +18,7 @@ app.use("/uploads", express.static(path.join(__dirname, "src", "uploads")));
 app.use('/api/users', require("./routes/userRoutes"));
 app.use('/api/ngo', require("./routes/ngoRoutes"));
 app.use('/api/report', require("./routes/reportRoutes"));
-// app.use('/api/post', require("./routes/postRoutes"));
+app.use('/api/post', require("./routes/postRoutes"));
 
 
 app.use(errorHandler);
