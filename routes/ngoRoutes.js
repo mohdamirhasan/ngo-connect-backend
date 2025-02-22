@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerNGO, registerNGOInfo, loginNGO, currentNGO, logoutNGO, getNgo, deleteNGO, updateNGO } = require('../controllers/ngoController');
+const { registerNGO, registerNGOInfo, loginNGO, currentNGO, logoutNGO, getNgo, deleteNGO, updateNGO, getNgoById } = require('../controllers/ngoController');
 const validateToken = require("../middlewares/validateToken");
 
 const router = express.Router();
@@ -19,5 +19,7 @@ router.get('/logout', validateToken, logoutNGO);
 router.get('/:category', getNgo);
 
 router.delete('/delete', validateToken, deleteNGO);
+
+router.get('/:id/get', getNgoById);
 
 module.exports = router;

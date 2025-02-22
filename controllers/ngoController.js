@@ -191,6 +191,19 @@ const deleteNGO = asyncHandler ( async (req, res) => {
     }  
 });
 
+//@desc Fetch NGO information by ID
+//@route GET api/ngo/:id/get
+//@access private
+const getNgoById = asyncHandler( async (req, res) => {
+    const ngo = await NgoInfo.find({ ngoId: req.params.id});
+    if(!ngo){
+        res.status(400);
+        throw new Error("NGO not found");
+    }
+    res.status(200).json(ngo);
+}
+);
+
 //@desc Logout NGO
 //@route POST api/ngo/logout
 //@access private
@@ -198,4 +211,4 @@ const logoutNGO = (req, res) => {
     res.json({ message: "Logged out successfully" });
 };
 
-module.exports = { registerNGO, registerNGOInfo, loginNGO, currentNGO, logoutNGO, getNgo, updateNGO, deleteNGO };
+module.exports = { registerNGO, registerNGOInfo, loginNGO, currentNGO, logoutNGO, getNgo, updateNGO, deleteNGO, getNgoById };
