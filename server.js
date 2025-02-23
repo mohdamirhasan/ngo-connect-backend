@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-// const cors = require('cors')
+const cors = require('cors')
 const connectDb = require("./config/dbConnect");
 const errorHandler = require("./middlewares/errorHandler");
 const path = require("path");
@@ -10,10 +10,10 @@ const app = express();
 
 const port = process.env.PORT || 5001;
 
-// app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.use(express.json());
-app.use("/uploads", express.static(path.join(__dirname, "src", "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use('/api/users', require("./routes/userRoutes"));
 app.use('/api/ngo', require("./routes/ngoRoutes"));
